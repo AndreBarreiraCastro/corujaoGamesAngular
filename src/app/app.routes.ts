@@ -9,6 +9,9 @@ import { colecaoResolver } from './resolvers/colecao-resolver-resolver';
 import { SagaList } from './components/saga/saga-list/saga-list';
 import { SagaForm } from './components/saga/saga-form/saga-form';
 import { sagaResolver } from './resolvers/saga-resolver-resolver';
+import { PlataformaList } from './components/plataforma/plataforma-list/plataforma-list';
+import { plataformaResolver } from './resolvers/plataforma-resolver-resolver';
+import { PlataformaForm } from './components/plataforma/plataforma-form/plataforma-form';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -24,5 +27,11 @@ export const routes: Routes = [
     {path:'sagas/new', component: SagaForm, title: 'Lista de Saga'},
     { path: 'sagas/edit/:id', component: SagaForm, title: 'Edição de Saga', 
         resolve: {saga: sagaResolver}
+    },
+    {path:'plataformas', component: PlataformaList, title: 'Lista de Plataformas'},
+    
+    {path:'plataformas/new', component: PlataformaForm, title: 'Lista de Plataforma'},
+    { path: 'plataformas/edit/:id', component: PlataformaForm, title: 'Edição de Plataforma', 
+        resolve: {plataforma: plataformaResolver}
     },
 ];

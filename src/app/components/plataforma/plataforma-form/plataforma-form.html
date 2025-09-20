@@ -1,1 +1,47 @@
-<p>plataforma-form works!</p>
+<mat-toolbar class="toolbar-title">
+    Controle de Plataformas
+</mat-toolbar>
+
+<mat-card class="card">
+  <mat-card-content>
+    <form class="form" [formGroup]="form">
+      <div class="grid">
+        <!-- Nome -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nomePlataforma" placeholder="Ex.: " />
+          <mat-icon matSuffix>badge</mat-icon>
+
+          @if (form.controls.nomePlataforma.touched && form.controls.nomePlataforma.hasError('required')) {
+            <mat-error>O nome é obrigatório.</mat-error>
+          }
+          @if (form.controls.nomePlataforma.touched && form.controls.nomePlataforma.hasError('minlength')) {
+            <mat-error>Digite pelo menos 3 caracteres.</mat-error>
+          }
+          @if (form.controls.nomePlataforma.touched && form.controls.nomePlataforma.hasError('maxlength')) {
+            <mat-hint align="end">Máx. 60 caracteres</mat-hint>
+          }
+        </mat-form-field>
+
+      
+      </div>
+
+      <div class="actions">
+        <button 
+          mat-raised-button
+          routerLink="/plataformas">
+          Cancelar
+      </button>
+
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="salvar()"
+          [disabled]="form.invalid">
+          Salvar
+        </button>
+
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
