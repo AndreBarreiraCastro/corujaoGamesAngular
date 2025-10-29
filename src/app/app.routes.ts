@@ -12,6 +12,9 @@ import { sagaResolver } from './resolvers/saga-resolver-resolver';
 import { PlataformaList } from './components/plataforma/plataforma-list/plataforma-list';
 import { plataformaResolver } from './resolvers/plataforma-resolver-resolver';
 import { PlataformaForm } from './components/plataforma/plataforma-form/plataforma-form';
+import { ClassificacaoList } from './classificacao/classificao-list/classificao-list';
+import { ClassificacaoForm } from './components/classificacao/classificao-form/classificao-form';
+import { classificacaoResolver } from './resolvers/classificacao-resolver-resolver';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -33,5 +36,10 @@ export const routes: Routes = [
     {path:'plataformas/new', component: PlataformaForm, title: 'Lista de Plataforma'},
     { path: 'plataformas/edit/:id', component: PlataformaForm, title: 'Edição de Plataforma', 
         resolve: {plataforma: plataformaResolver}
+    },
+    {path:'classificacaos', component: ClassificacaoList, title: 'Lista de Classificações'},
+    {path:'classificacaos/new', component: ClassificacaoForm, title: 'Criação de Classificações'},
+    { path: 'classificacaos/edit/:id', component: ClassificacaoForm, title: 'Edição de Classificações', 
+        resolve: {classificacao: classificacaoResolver}
     },
 ];

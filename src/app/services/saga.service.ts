@@ -19,15 +19,15 @@ buscarPorId(id: string): Observable<Saga>{
   return this.httpClient.get<Saga>(`${this.baseUrl}/id/${id}`);
 }
 
-incluir(colecao: Saga): Observable<Saga>{
-  return this.httpClient.post<Saga>(this.baseUrl,colecao);
+incluir(saga: Saga): Observable<Saga>{
+  return this.httpClient.post<Saga>(this.baseUrl,saga);
 }
 
-alterar(colecao: Saga): Observable<any>{
-  return this.httpClient.put<any>(`${this.baseUrl}/${colecao.id}`,colecao);
+alterar(saga: Saga): Observable<any>{
+  return this.httpClient.put<any>(`${this.baseUrl}/${saga.id}`,saga);
 }
 
-excluir(colecao: Saga): Observable<any>{
-  return this.httpClient.delete<any>(`${this.baseUrl}/${colecao.id}`);
+excluir(saga: Saga): Observable<any>{
+  return this.httpClient.delete<any>(`${this.baseUrl}/${saga.id}`);
 }
 }
