@@ -10,30 +10,32 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { classificaoservice } from '../../services/classificao.service';
-import { Classificacao } from '../../models/classificacao.model';
+
+import { Estoque } from '../../../models/estoque.model';
+import { estoqueservice } from '../../../services/estoque.service';
+
 @Component({
-  selector: 'app-classificacao-list',
+  selector: 'app-estoque-list',
   imports: [MatTableModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatButtonModule, MatIcon,RouterLink, MatSnackBarModule,
    RouterLink],
-  templateUrl: './classificao-list.html',
-  styleUrl: './classificao-list.css'
+  templateUrl: './estoque-list.html',
+  styleUrl: './estoque-list.css'
 })
-export class ClassificacaoList {
+export class EstoqueList {
 
-    displayedColumns: string[] = ['numero', 'classificacao','descricao', 'acao'];
- classificacao: Classificacao[] = [];
-  dataSource = new MatTableDataSource(this.classificacao);
+    displayedColumns: string[] = ['numero', 'quantidade', 'acao'];
+ estoque: Estoque[] = [];
+  dataSource = new MatTableDataSource(this.estoque);
 
-  constructor(private classificacaoService: classificaoservice,private snack: MatSnackBar,
+  constructor(private estoqueService: estoqueservice,private snack: MatSnackBar,
      private router: Router
   ){
 
   }
 
   ngOnInit(): void {
-      this.classificacaoService.getClassificacao().subscribe(data=>{
+      this.estoqueService.getEstoque().subscribe(data=>{
         this.dataSource=new MatTableDataSource(data);
       })
   }
@@ -43,9 +45,9 @@ export class ClassificacaoList {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-    excluir(colecao: Classificacao) {
+    excluir(colecao: Estoque) {
       
-        this.classificacaoService.excluir(colecao).subscribe({
+        this.estoqueService.excluir(colecao).subscribe({
            next: () => {
              this.exibirMensagem('Estado excluído com sucesso!');
             // this.router.navigateByUrl('/colecaos');

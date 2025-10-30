@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+
+import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterLink } from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+
+import { MatIcon } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
+
 import { Classificacao } from '../../../models/classificacao.model';
 import { classificaoservice } from '../../../services/classificao.service';
 
 @Component({
-  selector: 'app-classificao-list',
+  selector: 'app-classificacao-list',
   imports: [MatTableModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatButtonModule, MatIcon,RouterLink, MatSnackBarModule,
    RouterLink],
   templateUrl: './classificao-list.html',
   styleUrl: './classificao-list.css'
 })
-export class ClassificaoList {
-displayedColumns: string[] = ['numero', 'nome', 'acao'];
+export class ClassificacaoList {
+
+    displayedColumns: string[] = ['numero', 'classificacao','descricao', 'acao'];
  classificacao: Classificacao[] = [];
   dataSource = new MatTableDataSource(this.classificacao);
 

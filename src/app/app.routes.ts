@@ -12,9 +12,13 @@ import { sagaResolver } from './resolvers/saga-resolver-resolver';
 import { PlataformaList } from './components/plataforma/plataforma-list/plataforma-list';
 import { plataformaResolver } from './resolvers/plataforma-resolver-resolver';
 import { PlataformaForm } from './components/plataforma/plataforma-form/plataforma-form';
-import { ClassificacaoList } from './classificacao/classificao-list/classificao-list';
+
 import { ClassificacaoForm } from './components/classificacao/classificao-form/classificao-form';
 import { classificacaoResolver } from './resolvers/classificacao-resolver-resolver';
+import { ClassificacaoList } from './components/classificacao/classificao-list/classificao-list';
+import { EstoqueList } from './components/estoque/estoque-list/estoque-list';
+import { EstoqueForm } from './components/estoque/estoque-form/estoque-form';
+import { estoqueResolver } from './resolvers/estoque-resolver-resolver';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -41,5 +45,10 @@ export const routes: Routes = [
     {path:'classificacaos/new', component: ClassificacaoForm, title: 'Criação de Classificações'},
     { path: 'classificacaos/edit/:id', component: ClassificacaoForm, title: 'Edição de Classificações', 
         resolve: {classificacao: classificacaoResolver}
+    },
+    {path:'estoques', component: EstoqueList, title: 'Estoques'},
+    {path:'estoques/new', component: EstoqueForm, title: 'Criação de Estoques'},
+    { path: 'estoques/edit/:id', component: EstoqueForm, title: 'Edição de Estoques', 
+        resolve: {estoque: estoqueResolver}
     },
 ];
