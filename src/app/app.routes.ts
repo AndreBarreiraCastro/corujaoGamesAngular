@@ -19,6 +19,9 @@ import { ClassificacaoList } from './components/classificacao/classificao-list/c
 import { EstoqueList } from './components/estoque/estoque-list/estoque-list';
 import { EstoqueForm } from './components/estoque/estoque-form/estoque-form';
 import { estoqueResolver } from './resolvers/estoque-resolver-resolver';
+import { DiscoList } from './components/disco/disco-list/disco-list';
+import { DiscoForm } from './components/disco/disco-form/disco-form';
+import { discoResolver } from './resolvers/disco-resolver-resolver';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -50,5 +53,10 @@ export const routes: Routes = [
     {path:'estoques/new', component: EstoqueForm, title: 'Criação de Estoques'},
     { path: 'estoques/edit/:id', component: EstoqueForm, title: 'Edição de Estoques', 
         resolve: {estoque: estoqueResolver}
+    },
+    {path:'discos', component: DiscoList, title: 'Discos'},
+    {path:'discos/new', component:DiscoForm, title: 'Criação de Discos'},
+    { path: 'discos/edit/:id', component: DiscoForm, title: 'Edição de Discos', 
+        resolve: {disco: discoResolver}
     },
 ];
