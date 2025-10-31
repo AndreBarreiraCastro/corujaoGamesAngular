@@ -22,6 +22,12 @@ import { estoqueResolver } from './resolvers/estoque-resolver-resolver';
 import { DiscoList } from './components/disco/disco-list/disco-list';
 import { DiscoForm } from './components/disco/disco-form/disco-form';
 import { discoResolver } from './resolvers/disco-resolver-resolver';
+import { cartuchoResolver } from './resolvers/cartucho-resolver-resolver';
+import { CartuchoList } from './components/cartucho/cartucho-list/cartucho-list';
+import { CartuchoForm } from './components/cartucho/cartucho-form/cartucho-form';
+import { JogoList } from './components/jogo/jogo-list/jogo-list';
+import { JogoForm } from './components/jogo/jogo-form/jogo-form';
+import { jogoResolver } from './resolvers/cartucho-resolver-resolver copy';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -58,5 +64,15 @@ export const routes: Routes = [
     {path:'discos/new', component:DiscoForm, title: 'Criação de Discos'},
     { path: 'discos/edit/:id', component: DiscoForm, title: 'Edição de Discos', 
         resolve: {disco: discoResolver}
+    },
+    {path:'cartuchos', component: CartuchoList, title: 'Cartuchos'},
+    {path:'cartuchos/new', component:CartuchoForm, title: 'Criação de Cartuchos'},
+    { path: 'cartuchos/edit/:id', component: CartuchoForm, title: 'Edição de Cartuchos', 
+        resolve: {cartucho: cartuchoResolver}
+    },
+    {path:'jogos', component: JogoList, title: 'Jogos'},
+    {path:'jogos/new', component:JogoForm, title: 'Criação de Jogos'},
+    { path: 'jogos/edit/:id', component: JogoForm, title: 'Edição de Jogos', 
+        resolve: {jogo: jogoResolver}
     },
 ];

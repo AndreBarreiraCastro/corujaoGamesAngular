@@ -1,0 +1,29 @@
+<mat-toolbar class="toolbar-title"> Criação de Cartuchos </mat-toolbar>
+
+<mat-card class="card">
+  <mat-card-content>
+    <form class="form" [formGroup]="form">
+      <div class="grid">
+        <!-- Nome -->
+        <mat-form-field appearance="outline">
+          <mat-label>Desenvolvedora</mat-label>
+          <input matInput formControlName="desenvolvedora" placeholder="Ex.: 12" />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Modo Jogo</mat-label>
+          <input matInput formControlName="modoJogo" placeholder="Ex.: 12" />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="actions">
+        <button mat-raised-button routerLink="/cartuchos">Cancelar</button>
+
+        <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,134 @@
+<mat-toolbar color="primary">
+  <span class="toolbar-title">Cadastro de Jogo</span>
+</mat-toolbar>
+
+<mat-card class="card">
+  <mat-horizontal-stepper linear>
+
+    <!-- Passo 1: Informações básicas -->
+    <mat-step [stepControl]="formStep1" label="Informações Básicas">
+      <form [formGroup]="formStep1" class="form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Classificação</mat-label>
+          <mat-select formControlName="jogoClassificacao" required>
+            <mat-option *ngFor="let c of classificacoes" [value]="c.id">
+              {{ c.descricao}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Estoque</mat-label>
+          <mat-select formControlName="jogoEstoque" required>
+            <mat-option *ngFor="let e of estoques" [value]="e.id">
+              {{ e.quantidade }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Saga</mat-label>
+          <mat-select formControlName="jogoSaga" required>
+            <mat-option *ngFor="let s of sagas" [value]="s.id">
+              {{ s.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" matStepperNext>
+            Próximo
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Passo 2: Tipo de Mídia -->
+    <mat-step [stepControl]="formStep2" label="Tipo de Mídia">
+      <form [formGroup]="formStep2" class="form">
+        <div class="grid">
+          <button
+            mat-stroked-button
+            color="accent"
+            type="button"
+            (click)="onSelecionarTipoMidia('cartucho')"
+          >
+            Cartucho
+          </button>
+
+          <button
+            mat-stroked-button
+            color="accent"
+            type="button"
+            (click)="onSelecionarTipoMidia('disco')"
+          >
+            Disco
+          </button>
+        </div>
+
+        <mat-form-field *ngIf="midias.length > 0" appearance="outline">
+          <mat-label>Mídia</mat-label>
+          <mat-select formControlName="jogoMidia" required>
+            <mat-option *ngFor="let m of midias" [value]="m.id">
+              {{ m.desenvolvedora}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-stroked-button matStepperPrevious>Voltar</button>
+          <button mat-flat-button color="primary" matStepperNext>Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Passo 3: Detalhes do jogo -->
+    <mat-step [stepControl]="formStep3" label="Detalhes do Jogo">
+      <form [formGroup]="formStep3" class="form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="titulo" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Gênero</mat-label>
+          <input matInput formControlName="genero" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Valor Unitário</mat-label>
+          <input matInput type="number" formControlName="precoUnit" required />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-stroked-button matStepperPrevious>Voltar</button>
+          <button mat-flat-button color="primary" matStepperNext>Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Passo 4: Plataformas -->
+    <mat-step [stepControl]="formStep4" label="Plataformas">
+      <form [formGroup]="formStep4" class="form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Plataformas</mat-label>
+          <mat-select formControlName="jogoPlataforma" multiple required>
+            <mat-option *ngFor="let p of plataformas" [value]="p.id">
+              {{ p.nomePlataforma}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-stroked-button matStepperPrevious>Voltar</button>
+          <button mat-flat-button color="primary" (click)="salvar()">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>
