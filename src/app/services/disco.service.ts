@@ -13,9 +13,24 @@ private baseUrl = 'http://localhost:8080/discos';
 constructor( private httpClient: HttpClient){
 
 } 
-getDisco(): Observable<Disco[]>{
-  return this.httpClient.get<Disco[]>(this.baseUrl);
-}
+getDisco(page?: number, pageSize?: number): Observable<Disco[]> {
+    let params = {};
+    if ((page !== undefined) && (pageSize !== undefined)) {
+
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+
+    return this.httpClient.get<Disco[]>(`${this.baseUrl}/procuratodos`, { params });
+  }
+
+  count(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/count`);
+  }
+
 
 buscarPorId(id: string): Observable<Disco>{
   return this.httpClient.get<Disco>(`${this.baseUrl}/id/${id}`);

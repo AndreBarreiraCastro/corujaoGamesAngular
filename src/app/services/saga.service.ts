@@ -11,12 +11,26 @@ export class SagaService {
 constructor( private httpClient: HttpClient){
 
 } 
-getSaga(): Observable<Saga[]>{
-  return this.httpClient.get<Saga[]>(this.baseUrl);
+getSaga(page?: number, pageSize?: number): Observable<Saga[]>{
+  let params = {};
+      if ((page !== undefined) && (pageSize !== undefined)) {
+        
+        params = {
+          page: page.toString(),
+          pageSize: pageSize.toString()
+        }
+      }
+  
+  
+      return this.httpClient.get<Saga[]>(`${this.baseUrl}/procuratodos`, {params});
 }
 
 buscarPorId(id: string): Observable<Saga>{
   return this.httpClient.get<Saga>(`${this.baseUrl}/id/${id}`);
+}
+
+count(): Observable<any>{
+  return this.httpClient.get<any>(`${this.baseUrl}/count`);
 }
 
 incluir(saga: Saga): Observable<Saga>{

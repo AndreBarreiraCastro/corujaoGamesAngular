@@ -9,12 +9,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { CustomPaginatorIntl } from '../../jogo/jogo-list/custom-paginator-intl';
+
 @Component({
   selector: 'app-plataforma-list',
   imports: [MatTableModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatButtonModule, MatIcon,RouterLink, MatSnackBarModule,
    RouterLink,MatPaginatorModule],
+   providers: [
+    // 2. Adicione esta linha aos providers
+    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
+  ],
   templateUrl: './plataforma-list.html',
   styleUrl: './plataforma-list.css'
 })
@@ -35,6 +41,10 @@ totalRecords = 0;
         this.plataformaService.getPlataforma(this.page, this.pageSize).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     })
+
+    this.plataformaService.count().subscribe(data => {
+      this.totalRecords = data;
+    }); 
     
   }
 

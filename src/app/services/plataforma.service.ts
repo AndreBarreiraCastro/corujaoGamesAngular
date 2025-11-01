@@ -20,12 +20,12 @@ getPlataforma(page?: number, pageSize?: number): Observable<Plataforma[]>{
       
       params = {
         page: page.toString(),
-        page_size: pageSize.toString()
+        pageSize: pageSize.toString()
       }
     }
 
 
-    return this.httpClient.get<Plataforma[]>(this.baseUrl, {params});
+    return this.httpClient.get<Plataforma[]>(`${this.baseUrl}/procuratodos`, {params});
     //return this.httpClient.get<Estado[]>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
   }
 
@@ -43,5 +43,8 @@ alterar(plataforma: Plataforma): Observable<any>{
 
 excluir(plataforma: Plataforma): Observable<any>{
   return this.httpClient.delete<any>(`${this.baseUrl}/${plataforma.id}`);
+}
+count(): Observable<any>{
+  return this.httpClient.get<any>(`${this.baseUrl}/count`);
 }
 }
