@@ -71,6 +71,7 @@ export class JogoForm implements OnInit {
 
     // Inicializa os formulários dos passos
     this.formStep1 = this.fb.group({
+      id: [jogo?.id || null],
       jogoClassificacao: [jogo?.jogoClassificacao || null, Validators.required],
       jogoEstoque: [jogo?.jogoEstoque || null, Validators.required],
       jogoSaga: [jogo?.jogoSaga || null, Validators.required]

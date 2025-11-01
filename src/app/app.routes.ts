@@ -27,7 +27,7 @@ import { CartuchoList } from './components/cartucho/cartucho-list/cartucho-list'
 import { CartuchoForm } from './components/cartucho/cartucho-form/cartucho-form';
 import { JogoList } from './components/jogo/jogo-list/jogo-list';
 import { JogoForm } from './components/jogo/jogo-form/jogo-form';
-import { jogoResolver } from './resolvers/cartucho-resolver-resolver copy';
+import { jogoResolver } from './resolvers/jogo-resolver-resolver';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},

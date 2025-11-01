@@ -9,12 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-plataforma-list',
   imports: [MatTableModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatButtonModule, MatIcon,RouterLink, MatSnackBarModule,
-   RouterLink],
+   RouterLink,MatPaginatorModule],
   templateUrl: './plataforma-list.html',
   styleUrl: './plataforma-list.css'
 })
@@ -22,7 +22,9 @@ export class PlataformaList {
  displayedColumns: string[] = ['numero', 'nome', 'acao'];
  plataforma: Plataforma[] = [];
   dataSource = new MatTableDataSource(this.plataforma);
-
+totalRecords = 0;
+  page = 0;
+  pageSize = 2;
   constructor(private plataformaService: PlataformaService,private snack: MatSnackBar,
      private router: Router
   ){
@@ -30,9 +32,10 @@ export class PlataformaList {
   }
 
   ngOnInit(): void {
-      this.plataformaService.getPlataforma().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data);
-      })
+        this.plataformaService.getPlataforma(this.page, this.pageSize).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+    })
+    
   }
 
   applyFilter(event: Event){
@@ -72,5 +75,11 @@ export class PlataformaList {
       window.location.reload();
     }
   });
+  }
+
+   paginar(event: PageEvent): void {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.ngOnInit();
   }
 }

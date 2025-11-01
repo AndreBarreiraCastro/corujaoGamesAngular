@@ -22,12 +22,13 @@ buscarPorId(id: string): Observable<Jogo>{
 }
 
 incluir(jogo: Jogo): Observable<Jogo>{
-  console.log(jogo)
+  console.log(jogo.id)
   return this.httpClient.post<Jogo>(this.baseUrl,jogo);
 }
 
 alterar(jogo: Jogo): Observable<any>{
-  return this.httpClient.put<any>(`${this.baseUrl}/${jogo.id}`,jogo);
+  console.log(jogo)
+  return this.httpClient.put<any>(`${this.baseUrl}/alterar/${jogo.id}`,jogo);
 }
 
 excluir(jogo: Jogo): Observable<any>{

@@ -10,9 +10,24 @@ export class PlataformaService {
 constructor( private httpClient: HttpClient){
 
 } 
-getPlataforma(): Observable<Plataforma[]>{
-  return this.httpClient.get<Plataforma[]>(this.baseUrl);
-}
+getPlataforma(page?: number, pageSize?: number): Observable<Plataforma[]>{
+  let params = {};
+
+    console.log(page !== undefined);
+    console.log(pageSize !== undefined);
+
+    if ((page !== undefined) && (pageSize !== undefined)) {
+      
+      params = {
+        page: page.toString(),
+        page_size: pageSize.toString()
+      }
+    }
+
+
+    return this.httpClient.get<Plataforma[]>(this.baseUrl, {params});
+    //return this.httpClient.get<Estado[]>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
+  }
 
 buscarPorId(id: string): Observable<Plataforma>{
   return this.httpClient.get<Plataforma>(`${this.baseUrl}/id/${id}`);
