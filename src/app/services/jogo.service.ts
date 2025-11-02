@@ -13,9 +13,24 @@ private baseUrl = 'http://localhost:8080/Jogo';
 constructor( private httpClient: HttpClient){
 
 } 
-getJogo(): Observable<Jogo[]>{
-  return this.httpClient.get<Jogo[]>(this.baseUrl);
-}
+getJogo(page?: number, pageSize?: number): Observable<Jogo[]> {
+    let params = {};
+    if ((page !== undefined) && (pageSize !== undefined)) {
+
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+
+    return this.httpClient.get<Jogo[]>(`${this.baseUrl}/procuratodos`, { params });
+  }
+
+
+  count(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/count`);
+  }
 
 buscarPorId(id: string): Observable<Jogo>{
   return this.httpClient.get<Jogo>(`${this.baseUrl}/id/${id}`);

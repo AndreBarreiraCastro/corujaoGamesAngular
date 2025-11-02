@@ -9,28 +9,43 @@ import { Cartucho } from '../models/cartucho.model';
   providedIn: 'root'
 })
 export class cartuchoservice {
-private baseUrl = 'http://localhost:8080/cartuchos';
-constructor( private httpClient: HttpClient){
+  private baseUrl = 'http://localhost:8080/cartuchos';
+  constructor(private httpClient: HttpClient) {
 
-} 
-getCartucho(): Observable<Cartucho[]>{
-  return this.httpClient.get<Cartucho[]>(this.baseUrl);
-}
+  }
+  getCartucho(page?: number, pageSize?: number): Observable<Cartucho[]> {
+    let params = {};
+    if ((page !== undefined) && (pageSize !== undefined)) {
 
-buscarPorId(id: string): Observable<Cartucho>{
-  return this.httpClient.get<Cartucho>(`${this.baseUrl}/id/${id}`);
-}
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
 
-incluir(cartucho: Cartucho): Observable<Cartucho>{
-  console.log(cartucho)
-  return this.httpClient.post<Cartucho>(this.baseUrl,cartucho);
-}
 
-alterar(cartucho: Cartucho): Observable<any>{
-  return this.httpClient.put<any>(`${this.baseUrl}/${cartucho.id}`,cartucho);
-}
+    return this.httpClient.get<Cartucho[]>(`${this.baseUrl}/procuratodos`, { params });
+  }
 
-excluir(cartucho: Cartucho): Observable<any>{
-  return this.httpClient.delete<any>(`${this.baseUrl}/${cartucho.id}`);
-} 
+
+  count(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/count`);
+  }
+
+  buscarPorId(id: string): Observable<Cartucho> {
+    return this.httpClient.get<Cartucho>(`${this.baseUrl}/id/${id}`);
+  }
+
+  incluir(cartucho: Cartucho): Observable<Cartucho> {
+    console.log(cartucho)
+    return this.httpClient.post<Cartucho>(this.baseUrl, cartucho);
+  }
+
+  alterar(cartucho: Cartucho): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl}/${cartucho.id}`, cartucho);
+  }
+
+  excluir(cartucho: Cartucho): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/${cartucho.id}`);
+  }
 }

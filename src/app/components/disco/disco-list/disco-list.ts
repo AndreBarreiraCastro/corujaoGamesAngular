@@ -20,8 +20,8 @@ import { CustomPaginatorIntl } from '../../jogo/jogo-list/custom-paginator-intl'
   selector: 'app-disco-list',
   imports: [MatTableModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatButtonModule, MatIcon, RouterLink, MatSnackBarModule,
-    RouterLink,MatPaginatorModule],
-           providers: [
+    RouterLink, MatPaginatorModule],
+  providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
   ],
 
@@ -44,13 +44,13 @@ export class DiscoList {
   }
 
   ngOnInit(): void {
-this.discoService.getDisco(this.page, this.pageSize).subscribe(data => {
+    this.discoService.getDisco(this.page, this.pageSize).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     })
 
     this.discoService.count().subscribe(data => {
       this.totalRecords = data;
-    }); 
+    });
   }
 
   applyFilter(event: Event) {
@@ -93,7 +93,7 @@ this.discoService.getDisco(this.page, this.pageSize).subscribe(data => {
     });
   }
 
-   paginar(event: PageEvent): void {
+  paginar(event: PageEvent): void {
     this.page = event.pageIndex;
     this.pageSize = event.pageSize;
     this.ngOnInit();

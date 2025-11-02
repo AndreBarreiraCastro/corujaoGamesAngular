@@ -7,27 +7,42 @@ import { Classificacao } from '../models/classificacao.model';
   providedIn: 'root'
 })
 export class classificaoservice {
-private baseUrl = 'http://localhost:8080/Classificacao';
-constructor( private httpClient: HttpClient){
+  private baseUrl = 'http://localhost:8080/Classificacao';
+  constructor(private httpClient: HttpClient) {
 
-} 
-getClassificacao(): Observable<Classificacao[]>{
-  return this.httpClient.get<Classificacao[]>(this.baseUrl);
-}
+  }
+  getClassificacao(page?: number, pageSize?: number): Observable<Classificacao[]> {
+    let params = {};
+    if ((page !== undefined) && (pageSize !== undefined)) {
 
-buscarPorId(id: string): Observable<Classificacao>{
-  return this.httpClient.get<Classificacao>(`${this.baseUrl}/id/${id}`);
-}
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
 
-incluir(classificacao: Classificacao): Observable<Classificacao>{
-  return this.httpClient.post<Classificacao>(this.baseUrl,classificacao);
-}
 
-alterar(classificacao: Classificacao): Observable<any>{
-  return this.httpClient.put<any>(`${this.baseUrl}/${classificacao.id}`,classificacao);
-}
+    return this.httpClient.get<Classificacao[]>(`${this.baseUrl}/procuratodos`, { params });
+  }
 
-excluir(classificacao: Classificacao): Observable<any>{
-  return this.httpClient.delete<any>(`${this.baseUrl}/${classificacao.id}`);
-} 
+
+  count(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/count`);
+  }
+
+  buscarPorId(id: string): Observable<Classificacao> {
+    return this.httpClient.get<Classificacao>(`${this.baseUrl}/id/${id}`);
+  }
+
+  incluir(classificacao: Classificacao): Observable<Classificacao> {
+    return this.httpClient.post<Classificacao>(this.baseUrl, classificacao);
+  }
+
+  alterar(classificacao: Classificacao): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl}/${classificacao.id}`, classificacao);
+  }
+
+  excluir(classificacao: Classificacao): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/${classificacao.id}`);
+  }
 }
