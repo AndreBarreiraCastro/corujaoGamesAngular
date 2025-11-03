@@ -6,7 +6,24 @@ Ele foi adaptado para usar as propriedades do tipo 'CardJogo':
 - card.titulo (para o título)
 - card.precoUnit (para o preço)
 -->
+<div class="pesquisa-container">
+  <mat-form-field appearance="outline">
+    <!-- <mat-label>Pesquisar por Título</mat-label>
+  -->   <input 
+      matInput 
+      placeholder="Digite o nome do jogo..."
+      (input)="filtrarCards($event)"> 
+      </mat-form-field>
+</div>
 <div class="container responsive-grid">
+  @for (card of cards(); track card.id ?? $index) {
+    <mat-card class="plano-card">
+      
+      </mat-card>
+  }
+</div>
+<div class="container responsive-grid">
+  
   <!-- 
     Itera sobre o signal 'cards()'.
     Usa 'card.id' para o 'track', que é a propriedade correta do 'CardJogo'.
@@ -32,17 +49,11 @@ Ele foi adaptado para usar as propriedades do tipo 'CardJogo':
         <mat-card-subtitle>Jogo para PC / Console</mat-card-subtitle>
       </mat-card-header>
 
-      <!-- Conteúdo (Preço) -->
-      <mat-card-content class="content-center">
-        <div class="preco">
-          <!-- 
-            Usa 'card.precoUnit' ao invés de 'card.preco'.
-            Removemos o '/ mês' e o 'descontoAnual', 
-            pois são específicos do template de "Plano".
-          -->
-          {{ card.precoUnit | currency:'BRL':'symbol-narrow':'1.2-2' }}
-        </div>
-      </mat-card-content>
+   <mat-card-content class="content-center">
+  <div class="preco">
+    {{ card.PrecoUnit| currency:'BRL':'symbol-narrow':'1.2-2' }}
+  </div>
+</mat-card-content>
 
       <!-- Ações (Botões) -->
       <mat-card-actions class="acoes">
@@ -58,3 +69,11 @@ Ele foi adaptado para usar as propriedades do tipo 'CardJogo':
     </mat-card>
   }
 </div>
+
+  <mat-paginator
+  [pageSizeOptions]="[2, 4, 6, 8, 10]"
+  [pageSize]="pageSize"
+  [length]="totalRecords"
+  (page)="paginar($event)"
+>
+</mat-paginator>

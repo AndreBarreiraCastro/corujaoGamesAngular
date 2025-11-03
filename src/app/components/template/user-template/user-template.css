@@ -1,0 +1,205 @@
+/* ================================ */
+/* 1. Estrutura (Sticky Footer) */
+/* ================================ */
+:host {
+  /* Garante que o componente se comporte como um bloco */
+  display: block;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  /* Garante que o layout tenha pelo menos a altura da tela */
+  min-height: 100vh; 
+}
+
+.main-content {
+  /* Faz o conteúdo principal "empurrar" o rodapé para baixo */
+  flex-grow: 1; 
+  /* Adiciona um preenchimento padrão ao conteúdo */
+  padding: 24px;
+}
+
+/* ================================ */
+/* 2. Header (Cabeçalho) */
+/* ================================ */
+.main-header {
+  /* Organiza os itens do header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.header-brand a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+}
+
+.header-nav {
+  display: none; /* Escondido em telas pequenas */
+}
+
+/* Mostra a navegação principal em telas maiores */
+@media (min-width: 960px) {
+  .header-nav {
+    display: block;
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-button {
+  /* Botão de login com borda branca */
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: white !important;
+}
+
+.cart-button .mat-icon {
+  color: white;
+}
+
+/* ================================ */
+/* 3. Barra de Pesquisa no Header */
+/* (Sobrescreve o Material) */
+/* ================================ */
+
+/* ::ng-deep é usado para estilizar componentes internos do Angular Material
+  que ficam "protegidos" do CSS normal.
+*/
+
+/* Esconde a barra de pesquisa em telas pequenas */
+.header-search {
+  display: none;
+}
+
+/* Mostra a barra de pesquisa em telas maiores */
+@media (min-width: 768px) {
+  .header-search {
+    display: block;
+    width: 250px;
+  }
+}
+
+/* Ajusta a altura do campo para caber na toolbar */
+:host ::ng-deep .header-search .mat-mdc-form-field-flex {
+  height: 40px !important;
+  align-items: center;
+}
+:host ::ng-deep .header-search .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+/* Cor da borda, do ícone e do texto (para contrastar com a toolbar) */
+:host ::ng-deep .header-search .mdc-notched-outline__leading,
+:host ::ng-deep .header-search .mdc-notched-outline__notch,
+:host ::ng-deep .header-search .mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+:host ::ng-deep .header-search input,
+:host ::ng-deep .header-search mat-icon,
+:host ::ng-deep .header-search .mat-mdc-form-field-input-control::placeholder {
+  color: white !important;
+  opacity: 0.9;
+}
+
+/* Cor da borda e ícone quando focado */
+:host ::ng-deep .header-search.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .header-search.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .header-search.mat-focused .mdc-notched-outline__trailing {
+   border-color: white !important;
+   border-width: 2px;
+}
+
+:host ::ng-deep .header-search.mat-focused mat-icon {
+  color: white !important;
+}
+
+
+/* ================================ */
+/* 4. Footer (Rodapé) */
+/* ================================ */
+.main-footer {
+  background-color: #2a2a2a; /* Cor de fundo escura */
+  color: #cccccc; /* Cor de texto clara */
+  padding: 48px 24px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  justify-content: space-between;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex-grow: 1;
+  min-width: 200px; /* Largura mínima para cada seção */
+}
+
+.footer-section h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.footer-section p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icons a {
+  color: #ffffff;
+}
+.social-icons a:hover {
+  color: #bb86fc; /* Cor de destaque (ex: roxo) */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #444;
+  font-size: 0.85rem;
+  color: #888888;
+}

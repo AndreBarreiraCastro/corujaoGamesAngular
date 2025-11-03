@@ -84,7 +84,7 @@ export class JogoForm implements OnInit {
     this.formStep3 = this.fb.group({
       titulo: [jogo?.titulo || '', Validators.required],
       genero: [jogo?.genero || '', Validators.required],
-      precoUnit: [jogo?.precoUnit || null, Validators.required]
+      PrecoUnit: [jogo?.PrecoUnit || null, Validators.required]
     });
 
     this.formStep4 = this.fb.group({

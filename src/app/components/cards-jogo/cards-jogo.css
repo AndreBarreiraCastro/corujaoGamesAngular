@@ -82,3 +82,63 @@
   flex-grow: 1; /* Faz o botão ocupar o espaço restante */
   margin-left: 12px !important; /* Espaçamento do botão "Ver mais" */
 }
+/* * CSS para o arquivo: cards-jogo.css
+ *
+ * Este CSS ajusta o mat-form-field para ser usado em um fundo escuro,
+ * tornando o texto e as bordas visíveis (claros).
+*/
+
+/* 1. Estiliza o container do campo de pesquisa */
+.pesquisa-container {
+  /* Faz o container ter 90% da largura, centralizado */
+  width: 90%;
+  max-width: 600px; /* Define uma largura máxima razoável */
+  margin: 20px auto; /* Adiciona espaço vertical e centraliza horizontalmente */
+}
+
+/* * 2. Sobrescreve os estilos internos do Angular Material.
+ * Usamos :host ::ng-deep para "forçar" o CSS a entrar 
+ * no componente mat-form-field, quebrando o encapsulamento 
+ * de estilo apenas para este componente.
+*/
+
+:host ::ng-deep .pesquisa-container mat-form-field {
+  width: 100%; /* Faz o campo preencher o container */
+}
+
+/* 3. Cor do texto que o usuário digita */
+:host ::ng-deep .pesquisa-container input[matInput] {
+  color: #f0f0f0; /* Um branco-cinza, para não cansar a vista */
+}
+
+/* 4. Cor do label ("Pesquisar por Título") */
+:host ::ng-deep .pesquisa-container mat-label {
+  color: #cccccc; /* Um cinza-claro para o label */
+}
+
+/* 5. Cor do placeholder (texto de ajuda "Digite o nome...") */
+:host ::ng-deep .pesquisa-container .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control::placeholder {
+  color: #aaaaaa; /* Um cinza mais suave */
+  opacity: 1; /* Garante que o placeholder seja visível */
+}
+
+/* 6. Cor da borda (outline) do campo quando NÃO está focado */
+:host ::ng-deep .pesquisa-container .mdc-notched-outline__leading,
+:host ::ng-deep .pesquisa-container .mdc-notched-outline__notch,
+:host ::ng-deep .pesquisa-container .mdc-notched-outline__trailing {
+  /* Borda branca com 70% de opacidade */
+  border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 7. Cor da borda e do label QUANDO o campo está focado (clicado) */
+:host ::ng-deep .pesquisa-container mat-form-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .pesquisa-container mat-form-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .pesquisa-container mat-form-field.mat-focused .mdc-notched-outline__trailing {
+  /* Você pode usar a cor primária do seu app (se definida) ou uma cor forte */
+  border-color: #bb86fc; /* Um roxo claro, comum em temas dark */
+  border-width: 2px;
+}
+
+:host ::ng-deep .pesquisa-container mat-form-field.mat-focused mat-label {
+  color: #bb86fc; /* Mesma cor do foco da borda */
+}

@@ -4,7 +4,7 @@ export class Jogo {
 id?:number|null;
 titulo?:string|null;
 genero?:string|null;
-precoUnit?:number|null;
+PrecoUnit?:number|null;
 jogoSaga?:number|null;
 jogoClassificacao?:number|null;
 jogoEstoque?:number|null;

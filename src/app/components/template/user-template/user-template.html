@@ -1,0 +1,114 @@
+<!-- 
+  Este container usa Flexbox (via CSS) para criar um layout 
+  "sticky footer", garantindo que o rodapé fique no fim da página,
+  mesmo se o conteúdo for curto.
+-->
+<div class="layout-container">
+
+  <!-- ======================= -->
+  <!-- HEADER (Cabeçalho)      -->
+  <!-- ======================= -->
+  <header>
+    <mat-toolbar color="primary" class="main-header">
+      
+      <!-- 1. Logo/Nome da Loja -->
+      <div class="header-brand">
+        <a routerLink="/">
+          <mat-icon>gamepad</mat-icon>
+          <span>GameStore</span>
+        </a>
+      </div>
+
+      <!-- 2. Links de Navegação (Plataformas) -->
+      <nav class="header-nav">
+        <a mat-button routerLink="/jogos/ps5">PS5</a>
+        <a mat-button routerLink="/jogos/xbox">Xbox Series</a>
+        <a mat-button routerLink="/jogos/switch">Nintendo Switch</a>
+        <a mat-button routerLink="/jogos/pc">PC</a>
+      </nav>
+
+      <!-- 3. Ações (Pesquisa, Carrinho, Login) -->
+      <div class="header-actions">
+        
+        <!-- Barra de Pesquisa -->
+        <mat-form-field appearance="outline" class="header-search">
+          <input matInput placeholder="O que você procura?">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <!-- Carrinho de Compras -->
+        <button mat-icon-button class="cart-button" (click)="simularAdicionarAoCarrinho()">
+          <mat-icon [matBadge]="cartItemCount()" matBadgeColor="warn" matBadgeSize="small">shopping_cart</mat-icon>
+        </button>
+
+        <!-- Login -->
+        <button mat-stroked-button class="login-button">
+          <mat-icon>account_circle</mat-icon>
+          Login
+        </button>
+      </div>
+
+    </mat-toolbar>
+  </header>
+
+  <!-- ======================= -->
+  <!-- CONTEÚDO PRINCIPAL      -->
+  <!-- ======================= -->
+  <main class="main-content">
+    <!-- 
+      É aqui que o Angular irá renderizar seus outros componentes
+      (como o JogoCardListComponent, etc.) com base na rota atual.
+    -->
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- ======================= -->
+  <!-- FOOTER (Rodapé)         -->
+  <!-- ======================= -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      
+      <div class="footer-section">
+        <h4>Plataformas</h4>
+        <ul>
+          <li><a href="#">PlayStation 5</a></li>
+          <li><a href="#">Xbox Series X</a></li>
+          <li><a href="#">Nintendo Switch</a></li>
+          <li><a href="#">PC</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#">Sobre a GameStore</a></li>
+          <li><a href="#">Políticas de Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Trabalhe Conosco</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Atendimento</h4>
+        <p>Segunda a Sexta, das 9h às 18h</p>
+        <p>Email: contato@gamestore.com.br</p>
+        <p>Telefone: (11) 99999-8888</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Redes Sociais</h4>
+        <div class="social-icons">
+          <!-- SVGs inline para ícones, para não depender de libs externas -->
+          <a href="#" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg></a>
+          <a href="#" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c2.717 0 3.056.01 4.122.06c1.065.05 1.79.217 2.428.465c.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428c.047 1.066.06 1.405.06 4.122s-.013 3.056-.06 4.122c-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772a4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465c-1.066.047-1.405.06-4.122.06s-3.056-.013-4.122-.06c-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153a4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12s.013-3.056.06-4.122c.05-1.065.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.39.627C6.028.379 6.753.21 7.818.16C8.884.108 9.223.1 11.94.1h.06zm0 2.16c-2.704 0-3.04.01-4.1.06c-1.023.048-1.62.21-2.083.4c-.5.19-.9.42-1.293.813a2.7 2.7 0 0 0-.813 1.293c-.19.48-.352 1.05-.4 2.083c-.05 1.06-.06 1.4-.06 4.1s.01 3.04.06 4.1c.048 1.023.21 1.62.4 2.083c.19.5.42.9.813 1.293a2.71 2.71 0 0 0 1.293.813c.48.19 1.05.352 2.083.4c1.06.05 1.4.06 4.1.06s3.04-.01 4.1-.06c1.023-.048 1.62-.21 2.083-.4c.5-.19.9-.42 1.293-.813a2.71 2.71 0 0 0 .813-1.293c.19-.48.352-1.05.4-2.083c.05-1.06.06-1.4.06-4.1s-.01-3.04-.06-4.1c-.048-1.023-.21-1.62-.4-2.083a2.7 2.7 0 0 0-.813-1.293a2.71 2.71 0 0 0-1.293-.813c-.48-.19-1.05-.352-2.083-.4c-1.06-.05-1.4-.06-4.1-.06zm0 2.7c-3.26 0-5.903 2.643-5.903 5.903S8.74 17.666 12 17.666s5.903-2.643 5.903-5.903S15.26 6.86 12 6.86zm0 2.16c2.065 0 3.743 1.678 3.743 3.743s-1.678 3.743-3.743 3.743s-3.743-1.678-3.743-3.743s1.678-3.743 3.743-3.743zm4.288-4.32a1.322 1.322 0 1 1-2.644 0a1.322 1.322 0 0 1 2.644 0z"/></svg></a>
+          <a href="#" title="X (Twitter)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26l8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 GameStore. Todos os direitos reservados.
+    </div>
+  </footer>
+
+</div>

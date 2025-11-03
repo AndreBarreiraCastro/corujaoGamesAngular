@@ -10,28 +10,38 @@ import { Estoque } from '../../models/estoque.model';
 import { Jogo } from '../../models/jogo.model';
 import { jogoservice } from '../../services/jogo.service';
 import { estoqueservice } from '../../services/estoque.service';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { CustomPaginatorIntl } from '../jogo/jogo-list/custom-paginator-intl';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 type CardJogo = {
     id?: number;
     titulo?: string | null;
-    precoUnit?: number | null;
-   // estoque?: Estoque | null;
+    PrecoUnit?: number | null;
     imagemUrl?: string;
 };
 
 @Component({
     selector: 'app-plano-card-list',
     standalone: true,
-    imports: [MatCardModule, NgFor, NgIf, MatButton, DecimalPipe, CurrencyPipe,],
+    imports: [MatCardModule, NgFor, NgIf, MatButton, DecimalPipe, CurrencyPipe, MatPaginatorModule, MatPaginator, MatFormFieldModule,
+        MatInputModule],
     templateUrl: './cards-jogo.html',
+    providers: [
+        { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
+    ],
     styleUrls: ['./cards-jogo.css']
 })
 export class JogoCardListComponent implements OnInit {
 
     jogos: Jogo[] = [];
+    private allCards = signal<CardJogo[]>([]);
     cards = signal<CardJogo[]>([]);
-
+    totalRecords = 0;
+    page = 0;
+    pageSize = 100;
     constructor(
         private jogoService: jogoservice,
         private snackBar: MatSnackBar,
@@ -44,12 +54,17 @@ export class JogoCardListComponent implements OnInit {
 
     carregarJogos(): void {
         // ajuste os parâmetros de paginação conforme seu backend
-        this.jogoService.getJogo(0, 10).subscribe({
+        this.jogoService.getJogo(this.page, this.pageSize).subscribe({
             next: (data) => {
                 this.jogos = data;
                 this.carregarCards();
-            },
+            }
+            ,
             error: () => this.showSnackbarTopPosition('Falha ao carregar jogos.')
+        });
+        this.jogoService.count().subscribe(data => {
+            this.totalRecords = data;
+
         });
     }
 
@@ -58,12 +73,30 @@ export class JogoCardListComponent implements OnInit {
         const list: CardJogo[] = this.jogos.map(p => ({
             id: p.id!,
             titulo: p.titulo,
-            precoUnit: p.precoUnit,
-            imagemUrl: 'assets/img/jogos/padrao.png'
+            imagemUrl: 'assets/img/jogos/padrao.png',
+            PrecoUnit: p.PrecoUnit
         }));
         this.cards.set(list);
+        this.allCards.set(list);
     }
+    filtrarCards(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        const termo = input.value.toLowerCase(); // Pega o valor digitado
 
+        if (!termo) {
+            // Se o campo estiver vazio, restaura a lista completa
+            this.cards.set(this.allCards());
+            return;
+        }
+
+        // Filtra a lista mestre
+        const listaFiltrada = this.allCards().filter(card =>
+            card.titulo?.toLowerCase().startsWith(termo)
+        );
+
+        // Atualiza o signal 'cards' que a tela está lendo
+        this.cards.set(listaFiltrada);
+    }
     adicionarAoCarrinho(card: CardJogo): void {
         this.showSnackbarTopPosition(`O Jogo (${card.titulo}) foi adicionado ao carrinho.`);
 
@@ -75,5 +108,11 @@ export class JogoCardListComponent implements OnInit {
             verticalPosition: 'top',
             horizontalPosition: 'center'
         });
+    }
+
+    paginar(event: PageEvent): void {
+        this.page = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.ngOnInit();
     }
 }
