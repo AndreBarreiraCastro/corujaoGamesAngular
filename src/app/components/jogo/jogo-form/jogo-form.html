@@ -31,7 +31,7 @@
           <mat-label>Saga</mat-label>
           <mat-select formControlName="jogoSaga" required>
             <mat-option *ngFor="let s of sagas" [value]="s.id">
-              {{ s.nome }}
+              {{ s.nomeSaga }}
             </mat-option>
           </mat-select>
         </mat-form-field>

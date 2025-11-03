@@ -28,6 +28,7 @@ import { CartuchoForm } from './components/cartucho/cartucho-form/cartucho-form'
 import { JogoList } from './components/jogo/jogo-list/jogo-list';
 import { JogoForm } from './components/jogo/jogo-form/jogo-form';
 import { jogoResolver } from './resolvers/jogo-resolver-resolver';
+import { JogoCardListComponent } from './components/cards-jogo/cards-jogo';
 
 export const routes: Routes = [
     {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -75,4 +76,5 @@ export const routes: Routes = [
     { path: 'jogos/edit/:id', component: JogoForm, title: 'Edição de Jogos', 
         resolve: {jogo: jogoResolver}
     },
+    {path:'jogos-cards', component: JogoCardListComponent, title: 'Jogos'},
 ];

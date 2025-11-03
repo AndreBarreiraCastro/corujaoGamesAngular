@@ -1,3 +1,5 @@
+import { Estoque } from "./estoque.model";
+
 export class Jogo {
 id?:number|null;
 titulo?:string|null;

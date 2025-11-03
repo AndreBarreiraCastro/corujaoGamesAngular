@@ -1,0 +1,60 @@
+<!-- 
+Este é o template para JogoCardListComponent.
+Ele foi adaptado para usar as propriedades do tipo 'CardJogo':
+- card.id (para o track)
+- card.imagemUrl (para a imagem)
+- card.titulo (para o título)
+- card.precoUnit (para o preço)
+-->
+<div class="container responsive-grid">
+  <!-- 
+    Itera sobre o signal 'cards()'.
+    Usa 'card.id' para o 'track', que é a propriedade correta do 'CardJogo'.
+  -->
+  @for (card of cards(); track card.id ?? $index) {
+    <mat-card class="plano-card">
+      <!-- Mídia (Imagem) -->
+      <div class="media-16x9">
+        <img
+          class="media-img"
+          [src]=" 'assets/img/jogos/padrao.jpg'"
+          [alt]="card.titulo" />
+      </div>
+
+      <!-- Cabeçalho (Título) -->
+      <mat-card-header class="header-center">
+        <mat-card-title>{{ card.titulo }}</mat-card-title>
+        <!-- 
+          Removemos as propriedades 'maxAlunos' e 'maxProfessores'
+          pois elas não existem no tipo 'CardJogo'.
+          Você pode adicionar um subtítulo estático ou outra propriedade se desejar.
+        -->
+        <mat-card-subtitle>Jogo para PC / Console</mat-card-subtitle>
+      </mat-card-header>
+
+      <!-- Conteúdo (Preço) -->
+      <mat-card-content class="content-center">
+        <div class="preco">
+          <!-- 
+            Usa 'card.precoUnit' ao invés de 'card.preco'.
+            Removemos o '/ mês' e o 'descontoAnual', 
+            pois são específicos do template de "Plano".
+          -->
+          {{ card.precoUnit | currency:'BRL':'symbol-narrow':'1.2-2' }}
+        </div>
+      </mat-card-content>
+
+      <!-- Ações (Botões) -->
+      <mat-card-actions class="acoes">
+        <button mat-button color="primary">Ver mais…</button>
+        <button
+          mat-flat-button
+          color="accent"
+          class="btn-full"
+          (click)="adicionarAoCarrinho(card)">
+          Adicionar ao Carrinho
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

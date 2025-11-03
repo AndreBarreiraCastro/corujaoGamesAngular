@@ -32,6 +32,9 @@ buscarPorId(id: string): Observable<Saga>{
 count(): Observable<any>{
   return this.httpClient.get<any>(`${this.baseUrl}/count`);
 }
+todos(): Observable<Saga>{
+  return this.httpClient.get<Saga>(`${this.baseUrl}/todos`);
+}
 
 incluir(saga: Saga): Observable<Saga>{
   return this.httpClient.post<Saga>(this.baseUrl,saga);
