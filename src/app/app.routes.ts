@@ -29,52 +29,74 @@ import { JogoList } from './components/jogo/jogo-list/jogo-list';
 import { JogoForm } from './components/jogo/jogo-form/jogo-form';
 import { jogoResolver } from './resolvers/jogo-resolver-resolver';
 import { JogoCardListComponent } from './components/cards-jogo/cards-jogo';
+import { UserTemplate } from './components/template/user-template/user-template';
+import { AdminTemplate } from './components/template/admin-template/admin-template';
 
-export const routes: Routes = [
-    {path:'estados', component: EstadoListComponent, title: 'Lista de Estados'},
-    {path:'estados/new', component: EstadoFormComponent, title: 'Cadastro de Estados'},
-    {path:'cidades', component: CidadeListComponent, title: 'Lista de Cidades'},
-    {path:'cidades/new', component: CidadeFormComponent, title: 'Cadastro de Cidades'},
-    {path:'colecaos', component: ColecaoList, title: 'Lista de Coleção'},
-    {path:'colecaos/new', component: ColecaoForm, title: 'Lista de Coleção'},
-    { path: 'colecaos/edit/:id', component: ColecaoForm, title: 'Edição de Colecao', 
-        resolve: {colecao: colecaoResolver}
-    },
-    {path:'sagas', component: SagaList, title: 'Lista de Saga'},
-    {path:'sagas/new', component: SagaForm, title: 'Lista de Saga'},
-    { path: 'sagas/edit/:id', component: SagaForm, title: 'Edição de Saga', 
-        resolve: {saga: sagaResolver}
-    },
-    {path:'plataformas', component: PlataformaList, title: 'Lista de Plataformas'},
-    
-    {path:'plataformas/new', component: PlataformaForm, title: 'Lista de Plataforma'},
-    { path: 'plataformas/edit/:id', component: PlataformaForm, title: 'Edição de Plataforma', 
-        resolve: {plataforma: plataformaResolver}
-    },
-    {path:'classificacaos', component: ClassificacaoList, title: 'Lista de Classificações'},
-    {path:'classificacaos/new', component: ClassificacaoForm, title: 'Criação de Classificações'},
-    { path: 'classificacaos/edit/:id', component: ClassificacaoForm, title: 'Edição de Classificações', 
-        resolve: {classificacao: classificacaoResolver}
-    },
-    {path:'estoques', component: EstoqueList, title: 'Estoques'},
-    {path:'estoques/new', component: EstoqueForm, title: 'Criação de Estoques'},
-    { path: 'estoques/edit/:id', component: EstoqueForm, title: 'Edição de Estoques', 
-        resolve: {estoque: estoqueResolver}
-    },
-    {path:'discos', component: DiscoList, title: 'Discos'},
-    {path:'discos/new', component:DiscoForm, title: 'Criação de Discos'},
-    { path: 'discos/edit/:id', component: DiscoForm, title: 'Edição de Discos', 
-        resolve: {disco: discoResolver}
-    },
-    {path:'cartuchos', component: CartuchoList, title: 'Cartuchos'},
-    {path:'cartuchos/new', component:CartuchoForm, title: 'Criação de Cartuchos'},
-    { path: 'cartuchos/edit/:id', component: CartuchoForm, title: 'Edição de Cartuchos', 
-        resolve: {cartucho: cartuchoResolver}
-    },
-    {path:'jogos', component: JogoList, title: 'Jogos'},
-    {path:'jogos/new', component:JogoForm, title: 'Criação de Jogos'},
-    { path: 'jogos/edit/:id', component: JogoForm, title: 'Edição de Jogos', 
-        resolve: {jogo: jogoResolver}
-    },
-    {path:'jogos-cards', component: JogoCardListComponent, title: 'Jogos'},
+export const routes: Routes = [{
+    path: 'admin',
+    component: AdminTemplate,
+    title: 'Area Administrativa',
+    children: [
+        { path: 'estados', component: EstadoListComponent, title: 'Lista de Estados' },
+        { path: 'estados/new', component: EstadoFormComponent, title: 'Cadastro de Estados' },
+        { path: 'cidades', component: CidadeListComponent, title: 'Lista de Cidades' },
+        { path: 'cidades/new', component: CidadeFormComponent, title: 'Cadastro de Cidades' },
+        { path: 'colecaos', component: ColecaoList, title: 'Lista de Coleção' },
+        { path: 'colecaos/new', component: ColecaoForm, title: 'Lista de Coleção' },
+        {
+            path: 'colecaos/edit/:id', component: ColecaoForm, title: 'Edição de Colecao',
+            resolve: { colecao: colecaoResolver }
+        },
+        { path: 'sagas', component: SagaList, title: 'Lista de Saga' },
+        { path: 'sagas/new', component: SagaForm, title: 'Lista de Saga' },
+        {
+            path: 'sagas/edit/:id', component: SagaForm, title: 'Edição de Saga',
+            resolve: { saga: sagaResolver }
+        },
+        { path: 'plataformas', component: PlataformaList, title: 'Lista de Plataformas' },
+
+        { path: 'plataformas/new', component: PlataformaForm, title: 'Lista de Plataforma' },
+        {
+            path: 'plataformas/edit/:id', component: PlataformaForm, title: 'Edição de Plataforma',
+            resolve: { plataforma: plataformaResolver }
+        },
+        { path: 'classificacaos', component: ClassificacaoList, title: 'Lista de Classificações' },
+        { path: 'classificacaos/new', component: ClassificacaoForm, title: 'Criação de Classificações' },
+        {
+            path: 'classificacaos/edit/:id', component: ClassificacaoForm, title: 'Edição de Classificações',
+            resolve: { classificacao: classificacaoResolver }
+        },
+        { path: 'estoques', component: EstoqueList, title: 'Estoques' },
+        { path: 'estoques/new', component: EstoqueForm, title: 'Criação de Estoques' },
+        {
+            path: 'estoques/edit/:id', component: EstoqueForm, title: 'Edição de Estoques',
+            resolve: { estoque: estoqueResolver }
+        },
+        { path: 'discos', component: DiscoList, title: 'Discos' },
+        { path: 'discos/new', component: DiscoForm, title: 'Criação de Discos' },
+        {
+            path: 'discos/edit/:id', component: DiscoForm, title: 'Edição de Discos',
+            resolve: { disco: discoResolver }
+        },
+        { path: 'cartuchos', component: CartuchoList, title: 'Cartuchos' },
+        { path: 'cartuchos/new', component: CartuchoForm, title: 'Criação de Cartuchos' },
+        {
+            path: 'cartuchos/edit/:id', component: CartuchoForm, title: 'Edição de Cartuchos',
+            resolve: { cartucho: cartuchoResolver }
+        },
+        { path: 'jogos', component: JogoList, title: 'Jogos' },
+        { path: 'jogos/new', component: JogoForm, title: 'Criação de Jogos' },
+        {
+            path: 'jogos/edit/:id', component: JogoForm, title: 'Edição de Jogos',
+            resolve: { jogo: jogoResolver }
+        }]
+},
+{
+    path: 'user',
+    component: UserTemplate,
+    title: 'Area Cliente',
+    children: [
+        { path: 'jogos-cards', component: JogoCardListComponent, title: 'Jogos' },
+    ]
+}
 ];
