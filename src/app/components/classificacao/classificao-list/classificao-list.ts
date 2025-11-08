@@ -63,8 +63,8 @@ export class ClassificacaoList {
     this.classificacaoService.excluir(colecao).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/colecaos');
-        //window.location.reload();
+        this.router.navigateByUrl('admin/classificacaos');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

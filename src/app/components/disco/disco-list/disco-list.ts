@@ -63,8 +63,8 @@ export class DiscoList {
     this.discoService.excluir(disco).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/discos');
-        //window.location.reload();
+         this.router.navigateByUrl('admin/discos');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

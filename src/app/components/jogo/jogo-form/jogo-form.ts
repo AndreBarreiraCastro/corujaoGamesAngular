@@ -142,7 +142,7 @@ export class JogoForm implements OnInit {
 
     resultado.subscribe({
       next: () => {
-        this.router.navigateByUrl('/jogos');
+        this.router.navigateByUrl('admin/jogos');
         this.exibirMensagem('Jogo salvo com sucesso!');
       },
       error: () => {

@@ -59,7 +59,7 @@ console.log(newclassificacao);
 
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/classificacaos');
+        this.router.navigateByUrl('admin/classificacaos');
         this.exibirMensagem('Classificação salvo com sucesso!');
       },
       error: (erro) => {
@@ -75,7 +75,7 @@ console.log(newclassificacao);
       if (classificacao.id!=null){
         this.classificacaoService.excluir(classificacao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/classificacaos');
+            this.router.navigateByUrl('admin/classificacaos');
             this.exibirMensagem('Classificação excluída com sucesso!');
           },
           error: (erro) => {

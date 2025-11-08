@@ -56,8 +56,8 @@ this.colecaoService.getColecao(this.page, this.pageSize).subscribe(data => {
     this.colecaoService.excluir(colecao).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/colecaos');
-        //window.location.reload();
+        this.router.navigateByUrl('admin/colecaos');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

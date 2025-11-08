@@ -59,7 +59,7 @@ readonly form;
 
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/plataformas');
+        this.router.navigateByUrl('admin/plataformas');
         this.exibirMensagem('Coleção salvo com sucesso!');
       },
       error: (erro) => {
@@ -75,7 +75,7 @@ readonly form;
       if (plataforma.id!=null){
         this.plataformaService.excluir(plataforma).subscribe({
           next: () => {
-            this.router.navigateByUrl('/plataformas');
+            this.router.navigateByUrl('admin/plataformas');
             this.exibirMensagem('Estado excluído com sucesso!');
           },
           error: (erro) => {

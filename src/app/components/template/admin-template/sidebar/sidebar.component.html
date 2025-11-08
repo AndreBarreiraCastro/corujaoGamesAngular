@@ -1,16 +1,117 @@
-<mat-drawer-container>
-    <mat-drawer #drawer mode="side" opened="true">
-        <mat-toolbar>
-            <span>Menu</span>
+<!-- 
+  Este é o template para o AdminTemplate.
+  O mat-nav-list foi populado com base nas rotas filhas de '/admin' 
+  fornecidas no seu app.routes.ts.
+-->
+<mat-drawer-container class="h-full">
+    <mat-drawer #drawer mode="side" opened="true" class="w-64">
+        <mat-toolbar class="bg-gray-800 text-white shadow-md">
+            <span class="text-lg font-semibold">Menu Admin</span>
         </mat-toolbar>
         <mat-nav-list>
-            <mat-list-item>Home</mat-list-item>
-            <mat-list-item routerLink="/admin/alunos/new">Cadastro de Alunos</mat-list-item>
-            <mat-list-item routerLink="/admin/estados">Cadastro de Estados</mat-list-item>
-            <mat-list-item routerLink="/admin/cidades">Cadastro de Municípios</mat-list-item>
+            <!-- Estados -->
+            <mat-list-item routerLink="/admin/estados" routerLinkActive="active-link">
+                Lista de Estados
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/estados/new" routerLinkActive="active-link">
+                Cadastro de Estados
+            </mat-list-item>
+
+            <!-- Cidades -->
+            <mat-list-item routerLink="/admin/cidades" routerLinkActive="active-link">
+                Lista de Cidades
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/cidades/new" routerLinkActive="active-link">
+                Cadastro de Cidades
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <!-- Coleção -->
+            <mat-list-item routerLink="/admin/colecaos" routerLinkActive="active-link">
+                Lista de Coleção
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/colecaos/new" routerLinkActive="active-link">
+                Cadastro de Coleção
+            </mat-list-item>
+
+            <!-- Saga -->
+            <mat-list-item routerLink="/admin/sagas" routerLinkActive="active-link">
+                Lista de Saga
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/sagas/new" routerLinkActive="active-link">
+                Cadastro de Saga
+            </mat-list-item>
+
+            <!-- Plataforma -->
+            <mat-list-item routerLink="/admin/plataformas" routerLinkActive="active-link">
+                Lista de Plataformas
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/plataformas/new" routerLinkActive="active-link">
+                Cadastro de Plataforma
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <!-- Classificação -->
+            <mat-list-item routerLink="/admin/classificacaos" routerLinkActive="active-link">
+                Lista de Classificações
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/classificacaos/new" routerLinkActive="active-link">
+                Criação de Classificações
+            </mat-list-item>
+
+            <!-- Estoque -->
+            <mat-list-item routerLink="/admin/estoques" routerLinkActive="active-link">
+                Estoques
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/estoques/new" routerLinkActive="active-link">
+                Criação de Estoques
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <!-- Disco -->
+            <mat-list-item routerLink="/admin/discos" routerLinkActive="active-link">
+                Discos
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/discos/new" routerLinkActive="active-link">
+                Criação de Discos
+            </mat-list-item>
+
+            <!-- Cartucho -->
+            <mat-list-item routerLink="/admin/cartuchos" routerLinkActive="active-link">
+                Cartuchos
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/cartuchos/new" routerLinkActive="active-link">
+                Criação de Cartuchos
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <!-- Jogo -->
+            <mat-list-item routerLink="/admin/jogos" routerLinkActive="active-link">
+                Jogos
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/jogos/new" routerLinkActive="active-link">
+                Criação de Jogos
+            </mat-list-item>
+
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content>
+    <mat-drawer-content class="p-4 bg-gray-100">
+        <!-- O conteúdo da rota será exibido aqui -->
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>
+
+<!-- 
+  Adicione este estilo ao seu arquivo CSS principal ou 
+  ao array 'styles' do seu componente admin-template. 
+-->
+<style>
+  .active-link {
+    background-color: rgba(0, 0, 0, 0.05); /* Um cinza claro para o item ativo */
+    font-weight: 500;
+  }
+</style>

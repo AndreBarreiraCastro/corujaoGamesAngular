@@ -58,7 +58,7 @@ export class DiscoForm {
 console.log(newdisco)
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/discos');
+        this.router.navigateByUrl('admin/discos');
         this.exibirMensagem('Discos salvo com sucesso!');
       },
       error: (erro) => {
@@ -74,7 +74,7 @@ console.log(newdisco)
       if (disco.id != null) {
         this.discoService.excluir(disco).subscribe({
           next: () => {
-            this.router.navigateByUrl('/discos');
+            this.router.navigateByUrl('admin/discos');
             this.exibirMensagem('Discos excluída com sucesso!');
           },
           error: (erro) => {

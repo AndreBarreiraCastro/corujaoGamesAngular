@@ -58,7 +58,7 @@ export class ColecaoForm {
 
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/colecaos');
+        this.router.navigateByUrl('admin/colecaos');
         this.exibirMensagem('Coleção salvo com sucesso!');
       },
       error: (erro) => {
@@ -74,7 +74,7 @@ export class ColecaoForm {
       if (colecao.id!=null){
         this.colecaoService.excluir(colecao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/colecaos');
+            this.router.navigateByUrl('admin/colecaos');
             this.exibirMensagem('Estado excluído com sucesso!');
           },
           error: (erro) => {

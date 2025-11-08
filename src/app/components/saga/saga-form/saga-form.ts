@@ -58,7 +58,7 @@ readonly form;
 
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/sagas');
+        this.router.navigateByUrl('admin/sagas');
         this.exibirMensagem('Coleção salvo com sucesso!');
       },
       error: (erro) => {
@@ -74,7 +74,7 @@ readonly form;
       if (saga.id!=null){
         this.sagaService.excluir(saga).subscribe({
           next: () => {
-            this.router.navigateByUrl('/sagas');
+            this.router.navigateByUrl('admin/sagas');
             this.exibirMensagem('Estado excluído com sucesso!');
           },
           error: (erro) => {

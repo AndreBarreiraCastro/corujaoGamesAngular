@@ -62,8 +62,8 @@ export class CartuchoList {
     this.cartuchoService.excluir(cartucho).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/cartuchos');
-        //window.location.reload();
+        this.router.navigateByUrl('admin/cartuchos');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

@@ -62,8 +62,8 @@ export class JogoList {
     this.jogoService.excluir(jogo).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/jogos');
-        //window.location.reload();
+         this.router.navigateByUrl('admin/jogos');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

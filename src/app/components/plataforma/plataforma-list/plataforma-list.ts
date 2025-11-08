@@ -58,8 +58,8 @@ totalRecords = 0;
         this.plataformaService.excluir(plataforma).subscribe({
            next: () => {
              this.exibirMensagem('Estado excluído com sucesso!');
-            // this.router.navigateByUrl('/plataformas');
-            //window.location.reload();
+             this.router.navigateByUrl('admin/plataformas');
+            window.location.reload();
             },
           error: (erro) => {
             this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

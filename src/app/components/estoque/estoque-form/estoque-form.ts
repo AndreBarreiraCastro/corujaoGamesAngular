@@ -57,7 +57,7 @@ export class EstoqueForm {
 console.log(newestoque)
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/estoques');
+        this.router.navigateByUrl('admin/estoques');
         this.exibirMensagem('Classificação salvo com sucesso!');
       },
       error: (erro) => {
@@ -73,7 +73,7 @@ console.log(newestoque)
       if (estoque.id != null) {
         this.estoqueService.excluir(estoque).subscribe({
           next: () => {
-            this.router.navigateByUrl('/estoques');
+            this.router.navigateByUrl('admin/estoques');
             this.exibirMensagem('Classificação excluída com sucesso!');
           },
           error: (erro) => {

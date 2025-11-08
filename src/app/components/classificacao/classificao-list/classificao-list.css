@@ -1,69 +1,119 @@
-/* O flex é um modelo de layout do CSS criado para organizar elementos 
-em linha ou em coluna de forma mais flexível e responsiva. */
+/* Em seu-componente.component.scss */
 
-/* Define que o título da toolbar vai ocupar todo o espaço disponível (flex: 1)
-   e será alinhado ao centro */
-
-.toolbar-title {
-    flex: 1;
-    text-align: center;
-}
-
-.mat-toolbar {
-   padding: 0;
-}
-
-/* Cria um container flexível para organizar elementos lado a lado,
-   alinha os itens verticalmente ao centro e ocupa toda a largura */
-.flex-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-/* Faz com que a tabela ocupe 100% da largura disponível */
-table {
-    width: 100%;
-}
-
-/* Coluna 'id' da tabela:
-   - largura fixa de 5em
-   - borda à direita
-   - espaçamento interno à direita de 24px
-   - texto centralizado */
-.mat-column-id {
-    width: 5em;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-}
-
-/* Coluna 'nome' da tabela ocupa 70% da largura */
-.mat-column-nome {
-    width: 68%;
-}
-
-/* Coluna 'sigla' da tabela:
-   - largura fixa de 5em
-   - texto centralizado */
-.mat-column-sigla {
-    width: 5em;
-    text-align: center;
-}
-
-/* Coluna 'ação' da tabela:
-   - largura fixa de 10em
-   - texto centralizado */
-.mat-column-acao {
-    width: 10em;
-    text-align: center;
-}
-
-/* Define o estilo do componente host (a raiz do componente Angular):
-   - exibido como bloco (block)
-   - aplica espaçamento interno (padding) que varia conforme a largura da tela
-     usando clamp (mín: 12px, preferido: 2vw, máx: 24px) */
+/* 1. O CONTÊINER PRINCIPAL (O Card Branco)
+  Usamos :host para garantir que o componente se posicione
+  corretamente no centro da tela escura.
+*/
 :host {
-  display: block;
-  padding: clamp(12px, 2vw, 24px);
+  display: flex;
+  justify-content: center; /* Centraliza o card horizontalmente */
+  width: 100%;
+}
+
+.content-container {
+  /* --- Tamanho e Centralização --- */
+  width: 90%;          /* Responsivo, não ocupa a tela toda */
+  max-width: 1200px;   /* Limite máximo em telas grandes */
+  margin: 20px 0;      /* Espaçamento vertical */
+
+  /* --- Visual (Fundo Claro) --- */
+  background-color: #ffffff; /* Fundo claro */
+  border-radius: 10px;       /* Bordas arredondadas */
+  
+  /* Força o toolbar, tabela, etc. a respeitarem as bordas */
+  overflow: hidden; 
+}
+
+/* 2. TOOLBAR (Cabeçalho do Card)
+*/
+.toolbar-title {
+  flex: 1; /* Ocupa o espaço */
+  text-align: center;
+  font-weight: 500; /* Deixa o título com mais destaque */
+}
+
+/* 3. CONTROLES (Filtro e Botão Add)
+*/
+.controls-wrapper {
+  display: flex;
+  justify-content: space-between; /* Filtro na esquerda, botão na direita */
+  align-items: center; /* Alinha verticalmente */
+  padding: 20px 24px;  /* Espaçamento interno */
+  gap: 16px; /* Espaço entre os itens */
+}
+
+.filter-field {
+  flex: 1; /* Faz o filtro ocupar o espaço disponível */
+  min-width: 250px; /* Tamanho mínimo para o filtro */
+}
+
+.add-button {
+  flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+/* 4. TABELA E RESPONSIVIDADE
+*/
+.table-scroll-wrapper {
+  overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+  
+  /* Adiciona bordas laterais apenas no wrapper da tabela, 
+     para o padding dos controles não afetar a rolagem */
+  padding: 0 24px;
+}
+
+table {
+  width: 100%;
+}
+
+/* Centraliza a coluna de ação (visual mais limpo) */
+:host ::ng-deep .action-column-header,
+:host ::ng-deep .action-column-cell {
+  text-align: center;
+  width: 120px; /* Define um tamanho fixo para as ações */
+}
+
+/* Estiliza a linha de "sem dados" */
+.mat-row .mat-no-data-row {
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* 5. PAGINADOR
+*/
+mat-paginator {
+  /* O paginador padrão já tem fundo claro */
+  /* Apenas damos um padding para alinhá-lo */
+  padding: 0 12px;
+}
+
+/* 6. RESPONSIVIDADE PARA CELULAR (Mobile)
+*/
+@media (max-width: 600px) {
+  
+  .controls-wrapper {
+    /* Em telas pequenas, coloca um item abaixo do outro */
+    flex-direction: column-reverse; /* O botão "add" fica em cima */
+    align-items: stretch; /* Ocupa 100% da largura */
+  }
+
+  .add-button {
+    /* Transforma o FAB num botão normal largo, mais fácil de tocar */
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .filter-field {
+    width: 100%;
+  }
+
+  .toolbar-title {
+    font-size: 1.1rem; /* Diminui um pouco o título */
+  }
+  
+  .table-scroll-wrapper {
+     /* Remove o padding lateral no mobile para a tabela colar nas bordas */
+     padding: 0;
+  }
 }

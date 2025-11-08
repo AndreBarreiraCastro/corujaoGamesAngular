@@ -1,3 +1,42 @@
+/* 1. Deixa a mat-toolbar em modo dark */
+/* Nós miramos especificamente a barra com 'color="primary"' para sobrescrevê-la */
+mat-toolbar[color="primary"] {
+  background: #303030; /* Um cinza escuro padrão do Material Design */
+  color: #ffffff;      /* Define a cor padrão do texto e ícones para branco */
+}
+
+/* Garante que os spans e ícones dentro da barra 
+  também fiquem brancos (pois eles podem ter suas próprias cores) 
+*/
+mat-toolbar[color="primary"] span,
+mat-toolbar[color="primary"] button mat-icon {
+  color: #ffffff;
+}
+
+/* 2. Deixa o ícone 'account_circle' maior */
+/* Aqui, usamos :last-child para pegar o último botão da barra,
+  que no seu HTML é o botão de 'account_circle'.
+*/
+mat-toolbar button[matIconButton]:last-child mat-icon {
+  font-size: 32px; /* O padrão é 24px, então 32px é um bom aumento */
+  
+  /* Precisamos ajustar altura e largura para corresponder ao novo tamanho */
+  height: 32px;
+  width: 32px;
+  overflow: visible; 
+}
+
+/* Opcional: Centraliza o ícone maior dentro do botão.
+  Isso garante que ele não fique desalinhado.
+*/
+mat-toolbar button[matIconButton]:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Garante que o 'spacer' funcione (você provavelmente já tem isso) */
+/* Isso empurra o ícone da conta para a direita */
 .spacer {
   flex: 1 1 auto;
 }

@@ -58,11 +58,11 @@ export class CartuchoForm {
 console.log(newcartucho)
     resultado.subscribe({
       next: (obj) => {
-        this.router.navigateByUrl('/cartuchos');
-        this.exibirMensagem('Discos salvo com sucesso!');
+        this.router.navigateByUrl('admin/cartuchos');
+        this.exibirMensagem('Cartuchos salvo com sucesso!');
       },
       error: (erro) => {
-        this.exibirMensagem('Problema ao salvar a classificação, entre em contato com o suporte!');
+        this.exibirMensagem('Problema ao salvar a cartucho, entre em contato com o suporte!');
       }
     })
 
@@ -74,8 +74,8 @@ console.log(newcartucho)
       if (cartucho.id != null) {
         this.cartuchoService.excluir(cartucho).subscribe({
           next: () => {
-            this.router.navigateByUrl('/cartuchos');
-            this.exibirMensagem('Discos excluída com sucesso!');
+            this.router.navigateByUrl('admin/cartuchos');
+            this.exibirMensagem('Cartucho excluído com sucesso!');
           },
           error: (erro) => {
             this.exibirMensagem('Problema ao excluir o cartucho, entre em contato com o suporte!');

@@ -58,8 +58,8 @@ export class SagaList {
     this.sagaService.excluir(colecao).subscribe({
       next: () => {
         this.exibirMensagem('Estado excluído com sucesso!');
-        // this.router.navigateByUrl('/colecaos');
-        //window.location.reload();
+         this.router.navigateByUrl('admin/sagas');
+        window.location.reload();
       },
       error: (erro) => {
         this.exibirMensagem('Problema ao excluir o estado, entre em contato com o suporte!');

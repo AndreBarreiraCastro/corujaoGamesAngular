@@ -1,7 +1,7 @@
 <div class="content-container mat-elevation-z8">
   
   <mat-toolbar color="primary">
-    <span class="toolbar-title">Controle de Coleção</span>
+    <span class="toolbar-title">Controle de Disco</span>
   </mat-toolbar>
 
   <div class="controls-wrapper">
@@ -12,7 +12,7 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
-    <button mat-fab color="accent" class="add-button" routerLink="/discos/new" aria-label="Adicionar novo item">
+    <button mat-fab color="accent" class="add-button" routerLink="admin/discos/new" aria-label="Adicionar novo item">
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -39,7 +39,7 @@
       <ng-container matColumnDef="acao">
         <th mat-header-cell *matHeaderCellDef class="action-column-header"> Ação </th>
         <td mat-cell *matCellDef="let obj" class="action-column-cell"> 
-          <button mat-icon-button color="primary" routerLink="/discos/edit/{{obj.id}}" aria-label="Editar item">
+          <button mat-icon-button color="primary" routerLink="admin/discos/edit/{{obj.id}}" aria-label="Editar item">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="excluir(obj)" aria-label="Excluir item">
